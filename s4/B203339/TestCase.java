@@ -78,6 +78,25 @@ public class TestCase {
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
 	    if((value < 3.9999) || (4.0001 <value)) { System.out.println("IQ for 00 in 3210321001230123 should be 4.0. But it returns "+value); c++; }
+
+      InformationEstimatorInterface testObject;
+      double testValue;
+      System.out.println("Original Test");
+
+      testObject = new InformationEstimator();
+      testObject.setSpace("thisistest".getBytes());
+      testObject.setTarget("i".getBytes());
+      testValue = testObject.estimation();
+      System.out.println("The information quantity of i from thisistest is "+testValue+ " as you can see the probability of i is 20%");
+
+      testObject.setTarget("hi".getBytes());
+      testValue = testObject.estimation();
+      System.out.println("The information quantity of hi from thisistest is "+testValue+ " as you can see the probability of hi is 10%");
+
+      testObject.setTarget("th".getBytes());
+      testValue = testObject.estimation();
+      System.out.println("The information quantity of th from thisistest is "+testValue+ " as you can see the probability of th is 10%");
+
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred in InformationEstimator Object");
