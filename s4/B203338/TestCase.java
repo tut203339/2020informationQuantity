@@ -56,9 +56,9 @@ public class TestCase {
       // It returns -1 when TARGET is not set or TARGET's length is zero.
       myObject = new Frequencer();
       myObject.setSpace("horehorehogehone".getBytes());
-      //myObject.setTarget("".getBytes());not set target
+      myObject.setTarget("eh".getBytes());
       freq = myObject.frequency();
-      System.out.println(freq);//should be -1
+      System.out.println(freq);//should be 3
 
 	}
 	catch(Exception e) {
@@ -84,6 +84,20 @@ public class TestCase {
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
 	    if((value < 3.9999) || (4.0001 <value)) { System.out.println("IQ for 00 in 3210321001230123 should be 4.0. But it returns "+value); c++; }
+
+      System.out.println("13 test case");
+      myObject = new InformationEstimator();
+      myObject.setSpace("hogehogehonehone".getBytes());
+	    myObject.setTarget("h".getBytes());
+      value = myObject.estimation();
+      System.out.println("from hogehogehonehone target h information quantity="+value);
+      myObject.setTarget("ho".getBytes());
+      value = myObject.estimation();
+      System.out.println("from hogehogehonehone target ho information quantity="+value);
+      myObject.setTarget("eh".getBytes());
+      value = myObject.estimation();
+      System.out.println("from hogehogehonehone target eh information quantity="+value);
+
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred in InformationEstimator Object");
