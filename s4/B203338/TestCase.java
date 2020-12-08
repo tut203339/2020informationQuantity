@@ -47,6 +47,18 @@ public class TestCase {
 	    if(4 != freq) {System.out.println("frequency() for Hi_Ho_Hi_Ho, should return 4, when taget is H. But it returns "+freq); c++; }
 
 	    // Write your testCase here
+      myObject = new Frequencer();
+      myObject.setSpace("hogehonefofe".getBytes());
+      myObject.setTarget("h".getBytes());
+      freq = myObject.frequency();
+      System.out.println(freq);
+      System.out.println(myObject.subByteFrequency(0,5));
+      // It returns -1 when TARGET is not set or TARGET's length is zero.
+      myObject = new Frequencer();
+      myObject.setSpace("horehorehogehone".getBytes());
+      //myObject.setTarget("".getBytes());not set target
+      freq = myObject.frequency();
+      System.out.println(freq);
 
 	}
 	catch(Exception e) {
@@ -79,5 +91,4 @@ public class TestCase {
 	}
 	if(c == 0) { System.out.println("TestCase OK"); }
     }
-}	    
-	    
+}
