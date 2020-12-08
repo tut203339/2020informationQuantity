@@ -52,7 +52,7 @@ public class TestCase {
       testObject.setSpace("kakukaku sikajika marumaru umauma".getBytes());    //getBytes...https://docs.oracle.com/javase/jp/8/docs/api/java/lang/String.html
       testObject.setTarget("a".getBytes());      //set the target to count
       System.out.println("The frequency of a from kakukaku sikajika marumaru umauma is "+testObject.frequency()+" whie you can count it 8.");
-      testObject.setTarget("mau".getBytes());      //set the target to count
+      testObject.setTarget("au".getBytes());      //set the target to count
       System.out.println("The frequency of ma from kakukaku sikajika marumaru umauma is "+testObject.frequency()+" whie you can count it 1.");
 	}
 	catch(Exception e) {
