@@ -1,4 +1,4 @@
-package s4.B203338; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID. 
+package s4.B203338; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
 import java.lang.*;
 import s4.specification.*;
 
@@ -24,8 +24,8 @@ public interface InformationEstimatorInterface{
 // It returns Double.MAX_VALUE, when the true value is infinite, or space is not set.
 // The behavior is undefined, if the true value is finete but larger than Double.MAX_VALUE.
 // Note that this happens only when the space is unreasonably large. We will encounter other problem anyway.
-// Otherwise, estimation of information quantity, 
-}                        
+// Otherwise, estimation of information quantity,
+}
 */
 
 
@@ -47,6 +47,18 @@ public class TestCase {
 	    if(4 != freq) {System.out.println("frequency() for Hi_Ho_Hi_Ho, should return 4, when taget is H. But it returns "+freq); c++; }
 
 	    // Write your testCase here
+      myObject = new Frequencer();
+      myObject.setSpace("hogehonefofe".getBytes());
+      myObject.setTarget("h".getBytes());
+      freq = myObject.frequency();
+      System.out.println(freq);
+      System.out.println(myObject.subByteFrequency(0,5));
+      // It returns -1 when TARGET is not set or TARGET's length is zero.
+      myObject = new Frequencer();
+      myObject.setSpace("horehorehogehone".getBytes());
+      myObject.setTarget("eh".getBytes());
+      freq = myObject.frequency();
+      System.out.println(freq);//should be 3
 
 	}
 	catch(Exception e) {
@@ -72,6 +84,20 @@ public class TestCase {
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
 	    if((value < 3.9999) || (4.0001 <value)) { System.out.println("IQ for 00 in 3210321001230123 should be 4.0. But it returns "+value); c++; }
+
+      System.out.println("13 test case");
+      myObject = new InformationEstimator();
+      myObject.setSpace("hogehogehonehone".getBytes());
+	    myObject.setTarget("h".getBytes());
+      value = myObject.estimation();
+      System.out.println("from hogehogehonehone target h information quantity="+value);
+      myObject.setTarget("ho".getBytes());
+      value = myObject.estimation();
+      System.out.println("from hogehogehonehone target ho information quantity="+value);
+      myObject.setTarget("eh".getBytes());
+      value = myObject.estimation();
+      System.out.println("from hogehogehonehone target eh information quantity="+value);
+
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred in InformationEstimator Object");
@@ -79,5 +105,4 @@ public class TestCase {
 	}
 	if(c == 0) { System.out.println("TestCase OK"); }
     }
-}	    
-	    
+}
