@@ -1,4 +1,4 @@
-package s4.B203339; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID. 
+package s4.B203339; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
 import java.lang.*;
 import s4.specification.*;
 
@@ -24,8 +24,8 @@ public interface InformationEstimatorInterface{
 // It returns Double.MAX_VALUE, when the true value is infinite, or space is not set.
 // The behavior is undefined, if the true value is finete but larger than Double.MAX_VALUE.
 // Note that this happens only when the space is unreasonably large. We will encounter other problem anyway.
-// Otherwise, estimation of information quantity, 
-}                        
+// Otherwise, estimation of information quantity,
+}
 */
 
 
@@ -47,7 +47,13 @@ public class TestCase {
 	    if(4 != freq) {System.out.println("frequency() for Hi_Ho_Hi_Ho, should return 4, when taget is H. But it returns "+freq); c++; }
 
 	    // Write your testCase here
-
+      FrequencerInterface testObject;
+      testObject = new Frequencer();
+      testObject.setSpace("kakukaku sikajika marumaru umauma".getBytes());    //getBytes...https://docs.oracle.com/javase/jp/8/docs/api/java/lang/String.html
+      testObject.setTarget("a".getBytes());      //set the target to count
+      System.out.println("The frequency of a from kakukaku sikajika marumaru umauma is "+testObject.frequency()+" whie you can count it 8.");
+      testObject.setTarget("au".getBytes());      //set the target to count
+      System.out.println("The frequency of ma from kakukaku sikajika marumaru umauma is "+testObject.frequency()+" whie you can count it 1.");
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred in Frequencer Object");
@@ -72,6 +78,25 @@ public class TestCase {
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
 	    if((value < 3.9999) || (4.0001 <value)) { System.out.println("IQ for 00 in 3210321001230123 should be 4.0. But it returns "+value); c++; }
+
+      InformationEstimatorInterface testObject;
+      double testValue;
+      System.out.println("Original Test");
+
+      testObject = new InformationEstimator();
+      testObject.setSpace("thisistest".getBytes());
+      testObject.setTarget("i".getBytes());
+      testValue = testObject.estimation();
+      System.out.println("The information quantity of i from thisistest is "+testValue+ " as you can see the probability of i is 20%");
+
+      testObject.setTarget("hi".getBytes());
+      testValue = testObject.estimation();
+      System.out.println("The information quantity of hi from thisistest is "+testValue+ " as you can see the probability of hi is 10%");
+
+      testObject.setTarget("th".getBytes());
+      testValue = testObject.estimation();
+      System.out.println("The information quantity of th from thisistest is "+testValue+ " as you can see the probability of th is 10%");
+
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred in InformationEstimator Object");
@@ -79,5 +104,4 @@ public class TestCase {
 	}
 	if(c == 0) { System.out.println("TestCase OK"); }
     }
-}	    
-	    
+}
