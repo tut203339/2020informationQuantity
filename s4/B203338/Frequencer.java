@@ -93,44 +93,45 @@ public class Frequencer implements FrequencerInterface {/*
       String temp = new String(mySpace);
       String suffix_i = new String();
       String suffix_j = new String();
-      suffix_i = temp.substring(i);
-      suffix_j = temp.substring(j);
-      if(suffix_i.length()==suffix_j.length())
-        return 0;
+      suffix_i = temp.substring(suffixArray[i]);
+      suffix_j = temp.substring(suffixArray[j]);
+      //suffix_i = toString(mySpace[suffixArray[i]]);
+      //suffix_j = toString(mySpace[suffixArray[j]]);
+      System.out.println("compareing ");
+      System.out.println("suffix_i : "+suffix_i);
+      System.out.println("suffix_j : "+suffix_j);
       for(int k=0;k<Math.min(suffix_j.length(),suffix_i.length());k++){
-        System.out.println("compareing ");
-        System.out.println("suffix_i : "+suffix_i);
-        System.out.println("suffix_j : "+suffix_j);
         if(suffix_i.substring(k,k+1).equals(suffix_j.substring(k,k+1))){
           System.out.println("same");
-          k++;
         }
-        else
+        else{
           System.out.println("the "+k+" th word was different and returning "+suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1))/Math.abs(suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1))));
           return suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1))/Math.abs(suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1)));
+        }
+
       }
       System.out.println("every word was same");
       if(suffix_i.length()<suffix_j.length())
         return -1;
       return 1;
     }
-    public void setSpace(byte []space) {
 
+    public void setSpace(byte []space) {
       mySpace = space; if(mySpace.length>0) spaceReady = true;
       // First, create unsorted suffix array.
-      suffixArray = new int[space.length];
+       suffixArray=new int[mySpace.length];
       // put all suffixes in suffixArray.
-      for(int i = 0; i< space.length; i++) {
+      for(int i = 0; i< mySpace.length; i++) {
         suffixArray[i] = i; // Please note that each suffix is expressed by one integer.
       }
-      for(int i = 0; i< space.length; i++) {
-        for(int j = space.length-1; j>i ; j--) {
+      for(int i = 0; i< mySpace.length-1; i++) {
+        for(int j = mySpace.length-1; j>i; j--) {
+          System.out.println(j-1+" "+j);
           if(suffixCompare(j-1,j)==1){
-            int tmp = suffixArray[j-1];
+            int temp = suffixArray[j-1];
             suffixArray[j-1]=suffixArray[j];
-            suffixArray[j]=tmp;
+            suffixArray[j]=temp;
           }
-          while
         }
       }
     }
@@ -173,6 +174,21 @@ public class Frequencer implements FrequencerInterface {/*
     }
     public static void main(String[] args) {
       Frequencer frequencerObject;
+      System.out.println("comparing Si -> Sj");
+      System.out.println("comparing i -> o =-1");
+      System.out.println("comparing o -> i =1,switch");
+      System.out.println("comparing [ ] -> H =1,switch");
+      System.out.println("comparing [ ] -> i =1,switch");
+      System.out.println("comparing [ ] -> o =1,switch");
+      System.out.println("comparing H -> [ ] =-1");
+      System.out.println("comparing i -> [ ] =-1");
+      System.out.println("comparing o -> [ ] =-1");
+
+      System.out.println("comparing H -> H =0,compare next");
+      System.out.println("comparing i -> i =0,compare next");
+      System.out.println("comparing o -> o =0,compare next");
+      System.out.println("comparing [ ] -> [ ] =0,compare next");
+
       try {
         frequencerObject = new Frequencer();
         frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
