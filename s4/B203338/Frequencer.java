@@ -90,12 +90,29 @@ public class Frequencer implements FrequencerInterface {/*
       }
     }
     private int suffixCompare(int i, int j) {
-      String suffix_i = new String(mySpace);
-      String suffix_j = new String(mySpace);
-      suffix_i = suffix_i.substring(i);
-      suffix_j = suffix_j.substring(j);
-      System.out.println("compareing " +suffix_i+" and "+suffix_j+" which returns "+suffix_i.compareTo(suffix_j)/Math.abs(suffix_i.compareTo(suffix_j)));
-      return suffix_i.compareTo(suffix_j)/Math.abs(suffix_i.compareTo(suffix_j));
+      String temp = new String(mySpace);
+      String suffix_i = new String();
+      String suffix_j = new String();
+      suffix_i = temp.substring(i);
+      suffix_j = temp.substring(j);
+      if(suffix_i.length()==suffix_j.length())
+        return 0;
+      for(int k=0;k<Math.min(suffix_j.length(),suffix_i.length());k++){
+        System.out.println("compareing ");
+        System.out.println("suffix_i : "+suffix_i);
+        System.out.println("suffix_j : "+suffix_j);
+        if(suffix_i.substring(k,k+1).equals(suffix_j.substring(k,k+1))){
+          System.out.println("same");
+          k++;
+        }
+        else
+          System.out.println("the "+k+" th word was different and returning "+suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1))/Math.abs(suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1))));
+          return suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1))/Math.abs(suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1)));
+      }
+      System.out.println("every word was same");
+      if(suffix_i.length()<suffix_j.length())
+        return -1;
+      return 1;
     }
     public void setSpace(byte []space) {
 
@@ -113,6 +130,7 @@ public class Frequencer implements FrequencerInterface {/*
             suffixArray[j-1]=suffixArray[j];
             suffixArray[j]=tmp;
           }
+          while
         }
       }
     }
