@@ -97,20 +97,14 @@ public class Frequencer implements FrequencerInterface {/*
       suffix_j = temp.substring(suffixArray[j]);
       //suffix_i = toString(mySpace[suffixArray[i]]);
       //suffix_j = toString(mySpace[suffixArray[j]]);
-      System.out.println("compareing ");
-      System.out.println("suffix_i : "+suffix_i);
-      System.out.println("suffix_j : "+suffix_j);
       for(int k=0;k<Math.min(suffix_j.length(),suffix_i.length());k++){
         if(suffix_i.substring(k,k+1).equals(suffix_j.substring(k,k+1))){
-          System.out.println("same");
         }
         else{
-          System.out.println("the "+k+" th word was different and returning "+suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1))/Math.abs(suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1))));
           return suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1))/Math.abs(suffix_i.substring(k,k+1).compareTo(suffix_j.substring(k,k+1)));
         }
 
       }
-      System.out.println("every word was same");
       if(suffix_i.length()<suffix_j.length())
         return -1;
       return 1;
@@ -126,7 +120,6 @@ public class Frequencer implements FrequencerInterface {/*
       }
       for(int i = 0; i< mySpace.length-1; i++) {
         for(int j = mySpace.length-1; j>i; j--) {
-          System.out.println(j-1+" "+j);
           if(suffixCompare(j-1,j)==1){
             int temp = suffixArray[j-1];
             suffixArray[j-1]=suffixArray[j];
@@ -160,34 +153,46 @@ public class Frequencer implements FrequencerInterface {/*
       return last1 - first;
     }
     private int targetCompare(int i, int j, int k) {
-      String suffix_i;
-      String target_j_k;
-      suffix_i = mySpace.toString().substring(i);
-      target_j_k = myTarget.toString().substring(j,k);
-      return suffix_i.compareTo(target_j_k);
+      String suffix_i = new String(mySpace);
+      String target_j_k = new String(myTarget);
+      suffix_i = suffix_i.substring(i);
+      target_j_k = target_j_k.substring(j,k);
+      System.out.println("compareing");
+      System.out.println("suffix_i   : "+suffix_i);
+      System.out.println("target_j_k : "+target_j_k);
+      if(suffix_i.length()<target_j_k.length()){
+        System.out.println("out of range");
+        return -1;
+      }
+      else{
+        if(suffix_i.startsWith(target_j_k)){
+          System.out.println("It starts from the target and returns 0");
+          return 0;
+        }
+      }
+      System.out.println("It does not start from the target");
+      return 1;
     }
     private int subByteStartIndex(int start, int end) {
-      return suffixArray.length;
+      for(int i = 0;i<suffixArray.length;i++){
+        if(targetCompare(suffixArray[i],start,end)==0){
+          System.out.println("start is returning"+i);
+          return i;
+        }
+      }
+      return -1;
     }
     private int subByteEndIndex(int start, int end) {
-      return suffixArray.length;
+      for(int i = suffixArray.length-1;i>=0;i--){
+        if(targetCompare(suffixArray[i],start,end)==0){
+          System.out.println("end is returning "+i+1);
+          return i+1;
+        }
+      }
+      return -1;
     }
     public static void main(String[] args) {
       Frequencer frequencerObject;
-      System.out.println("comparing Si -> Sj");
-      System.out.println("comparing i -> o =-1");
-      System.out.println("comparing o -> i =1,switch");
-      System.out.println("comparing [ ] -> H =1,switch");
-      System.out.println("comparing [ ] -> i =1,switch");
-      System.out.println("comparing [ ] -> o =1,switch");
-      System.out.println("comparing H -> [ ] =-1");
-      System.out.println("comparing i -> [ ] =-1");
-      System.out.println("comparing o -> [ ] =-1");
-
-      System.out.println("comparing H -> H =0,compare next");
-      System.out.println("comparing i -> i =0,compare next");
-      System.out.println("comparing o -> o =0,compare next");
-      System.out.println("comparing [ ] -> [ ] =0,compare next");
 
       try {
         frequencerObject = new Frequencer();
@@ -208,6 +213,7 @@ public class Frequencer implements FrequencerInterface {/*
         A:o Hi Ho
         */
         frequencerObject.setTarget("H".getBytes());
+
         //
         // **** Please write code to check subByteStartIndex, and subByteEndIndex
         //
@@ -215,6 +221,7 @@ public class Frequencer implements FrequencerInterface {/*
         System.out.print("Freq = "+ result+" ");
         if(4 == result) { System.out.println("OK"); } else
         {System.out.println("WRONG"); }
+
       }
       catch(Exception e) {
         System.out.println("STOP");
