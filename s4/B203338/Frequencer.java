@@ -157,26 +157,19 @@ public class Frequencer implements FrequencerInterface {/*
       String target_j_k = new String(myTarget);
       suffix_i = suffix_i.substring(i);
       target_j_k = target_j_k.substring(j,k);
-      System.out.println("compareing");
-      System.out.println("suffix_i   : "+suffix_i);
-      System.out.println("target_j_k : "+target_j_k);
       if(suffix_i.length()<target_j_k.length()){
-        System.out.println("out of range");
         return -1;
       }
       else{
         if(suffix_i.startsWith(target_j_k)){
-          System.out.println("It starts from the target and returns 0");
           return 0;
         }
       }
-      System.out.println("It does not start from the target");
       return 1;
     }
     private int subByteStartIndex(int start, int end) {
       for(int i = 0;i<suffixArray.length;i++){
         if(targetCompare(suffixArray[i],start,end)==0){
-          System.out.println("start is returning"+i);
           return i;
         }
       }
@@ -185,7 +178,6 @@ public class Frequencer implements FrequencerInterface {/*
     private int subByteEndIndex(int start, int end) {
       for(int i = suffixArray.length-1;i>=0;i--){
         if(targetCompare(suffixArray[i],start,end)==0){
-          System.out.println("end is returning "+i+1);
           return i+1;
         }
       }
@@ -221,7 +213,10 @@ public class Frequencer implements FrequencerInterface {/*
         System.out.print("Freq = "+ result+" ");
         if(4 == result) { System.out.println("OK"); } else
         {System.out.println("WRONG"); }
-
+        frequencerObject.setTarget(" Ho".getBytes());
+        result = frequencerObject.frequency();
+        if(2 == result) { System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nOK!"); } else
+        {System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nWRONG"); }
       }
       catch(Exception e) {
         System.out.println("STOP");
