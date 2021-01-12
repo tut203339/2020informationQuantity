@@ -168,17 +168,47 @@ public class Frequencer implements FrequencerInterface {/*
       return 1;
     }
     private int subByteStartIndex(int start, int end) {
-      for(int i = 0;i<suffixArray.length;i++){
+      /*for(int i = 0;i<suffixArray.length;i++){
         if(targetCompare(suffixArray[i],start,end)==0){
           return i;
+        }
+      }*/
+      int i = 0;
+      int j = suffixArray.length;
+      while(i<=j){
+        int center = (j+i)/2;
+        if(targetCompare(suffixArray[center],start,end)==-1){
+          j=center-1;
+        }
+        else if(targetCompare(suffixArray[center],start,end)==0){
+          while(targetCompare(suffixArray[--center],start,end)==0);
+          return ++center;
+        }
+        else if(targetCompare(suffixArray[center],start,end)==1){
+          i=center+1;
         }
       }
       return -1;
     }
     private int subByteEndIndex(int start, int end) {
-      for(int i = suffixArray.length-1;i>=0;i--){
+      /*for(int i = suffixArray.length-1;i>=0;i--){
         if(targetCompare(suffixArray[i],start,end)==0){
           return i+1;
+        }
+      }*/
+      int i = 0;
+      int j = suffixArray.length;
+      while(i<=j){
+        int center = (j+i)/2;
+        if(targetCompare(suffixArray[center],start,end)==-1){
+          j=center-1;
+        }
+        else if(targetCompare(suffixArray[center],start,end)==0){
+          while(targetCompare(suffixArray[++center],start,end)==0);
+          return center;
+        }
+        else if(targetCompare(suffixArray[center],start,end)==1){
+          i=center+1;
         }
       }
       return -1;
