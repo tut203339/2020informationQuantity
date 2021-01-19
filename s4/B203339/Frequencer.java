@@ -194,7 +194,6 @@ public class Frequencer implements FrequencerInterface {/*
             System.out.println(e);
             return 0;
           }
-
         }
         else if(targetCompare(suffixArray[m],start,end)==-1){
           s=m+1;
