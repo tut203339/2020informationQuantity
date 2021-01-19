@@ -191,7 +191,6 @@ public class Frequencer implements FrequencerInterface {/*
             return m+1;
           }
           catch(Exception ex){
-            System.out.println(e);
             return 0;
           }
         }
