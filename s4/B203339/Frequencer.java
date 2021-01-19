@@ -157,15 +157,20 @@ public class Frequencer implements FrequencerInterface {/*
       String target_j_k = new String(myTarget);
       suffix_i = suffix_i.substring(i);
       target_j_k = target_j_k.substring(j,k);
-      if(suffix_i.length()<target_j_k.length()){
+      /*if(suffix_i.length()<target_j_k.length()){
         return -1;
       }
       else{
         if(suffix_i.startsWith(target_j_k)){
           return 0;
         }
+      }*/
+      if(suffix_i.startsWith(target_j_k)){
+        return 0;
       }
-      return 1;
+      else{
+        return suffix_i.compareTo(target_j_k)/Math.abs(suffix_i.compareTo(target_j_k));
+      }
     }
     private int subByteStartIndex(int start, int end) {
       /*for(int i = 0;i<suffixArray.length;i++){
@@ -186,6 +191,34 @@ public class Frequencer implements FrequencerInterface {/*
         }
         else if(targetCompare(suffixArray[center],start,end)==1){
           i=center+1;
+        }
+      }
+      return -1;*/
+      int s = 0;
+      int e = suffixArray.length-1;
+
+      while(s<e){
+        int m = (s+e)/2;
+        if(targetCompare(suffixArray[m],start,end)==0){
+          //search
+          try{
+            while(targetCompare(suffixArray[--m],start,end)==0);
+            return m+1;
+          }
+          catch(Exception ex){
+            System.out.println(e);
+            return 0;
+          }
+
+        }
+        else if(targetCompare(suffixArray[m],start,end)==-1){
+          s=m+1;
+        }
+        else if(targetCompare(suffixArray[m],start,end)==1){
+          e=m-1;
+        }
+        else{
+          return -1;
         }
       }
       return -1;
@@ -209,6 +242,30 @@ public class Frequencer implements FrequencerInterface {/*
         }
         else if(targetCompare(suffixArray[center],start,end)==1){
           i=center+1;
+        }
+      }
+      return -1;*/
+      int s = 0;
+      int e = suffixArray.length-1;
+
+      while(s<e){
+        int m = (s+e)/2;
+        if(targetCompare(suffixArray[m],start,end)==0){
+          //search
+          try{
+            while(targetCompare(suffixArray[m++],start,end)==0);
+            return m-1;
+          }
+          catch(Exception ex){
+            return suffixArray.length-1;
+          }
+
+        }
+        else if(targetCompare(suffixArray[m],start,end)==-1){
+          s=m+1;
+        }
+        else if(targetCompare(suffixArray[m],start,end)==1){
+          e=m-1;
         }
       }
       return -1;
@@ -243,13 +300,13 @@ public class Frequencer implements FrequencerInterface {/*
         System.out.print("Freq = "+ result+" ");
         if(4 == result) { System.out.println("OK"); } else
         {System.out.println("WRONG"); }
-        frequencerObject.setTarget(" Ho".getBytes());
+        frequencerObject.setTarget("o".getBytes());
         result = frequencerObject.frequency();
-        if(2 == result) { System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nOK!"); } else
+        if(1 == result) { System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nOK!"); } else
         {System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nWRONG"); }
       }
       catch(Exception e) {
-        System.out.println("STOP");
+        System.out.println("STOP"+e);
       }
     }
 }
