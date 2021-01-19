@@ -173,36 +173,56 @@ public class Frequencer implements FrequencerInterface {/*
       }
     }
     private int subByteStartIndex(int start, int end) {
-      for(int i = 0;i<suffixArray.length;i++){
+      /*for(int i = 0;i<suffixArray.length;i++){
         if(targetCompare(suffixArray[i],start,end)==0){
           return i;
         }
       }
-      return -1;
-      /*int s = 0;
-      int e  suffixArray.length-1;
+      return -1;*/
+      int s = 0;
+      int e = suffixArray.length-1;
 
       while(s<e){
         int m = (s+e)/2;
         if(targetCompare(suffixArray[m],start,end)==0){
-
+          //search
+          while(targetCompare(suffixArray[m--],start,end)==0);
+          return m+2;
         }
         else if(targetCompare(suffixArray[m],start,end)==-1){
-
+          s=m+1;
         }
         else if(targetCompare(suffixArray[m],start,end)==1){
-
+          e=m-1;
         }
         else{
           return -1;
         }
       }
-      return -1;*/
+      return -1;
     }
     private int subByteEndIndex(int start, int end) {
-      for(int i = suffixArray.length-1;i>=0;i--){
+      /*for(int i = suffixArray.length-1;i>=0;i--){
         if(targetCompare(suffixArray[i],start,end)==0){
           return i+1;
+        }
+      }
+      return -1;*/
+      int s = 0;
+      int e = suffixArray.length-1;
+
+      while(s<e){
+        int m = (s+e)/2;
+        if(targetCompare(suffixArray[m],start,end)==0){
+          //search
+          while(targetCompare(suffixArray[m++],start,end)==0);
+          return m-1;
+        }
+        else if(targetCompare(suffixArray[m],start,end)==-1){
+          s=m+1;
+        }
+        else if(targetCompare(suffixArray[m],start,end)==1){
+          e=m-1;
         }
       }
       return -1;
@@ -237,13 +257,13 @@ public class Frequencer implements FrequencerInterface {/*
         System.out.print("Freq = "+ result+" ");
         if(4 == result) { System.out.println("OK"); } else
         {System.out.println("WRONG"); }
-        frequencerObject.setTarget(" Ho".getBytes());
+        frequencerObject.setTarget(" Hi".getBytes());
         result = frequencerObject.frequency();
-        if(2 == result) { System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nOK!"); } else
+        if(1 == result) { System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nOK!"); } else
         {System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nWRONG"); }
       }
       catch(Exception e) {
-        System.out.println("STOP");
+        System.out.println("STOP"+e);
       }
     }
 }
