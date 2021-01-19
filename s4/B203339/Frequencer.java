@@ -182,7 +182,7 @@ public class Frequencer implements FrequencerInterface {/*
       int s = 0;
       int e = suffixArray.length-1;
 
-      while(s<e){
+      while(s<=e){
         int m = (s+e)/2;
         if(targetCompare(suffixArray[m],start,end)==0){
           //search
@@ -200,10 +200,8 @@ public class Frequencer implements FrequencerInterface {/*
         else if(targetCompare(suffixArray[m],start,end)==1){
           e=m-1;
         }
-        else{
-          return -1;
-        }
       }
+      System.out.println("404");
       return -1;
     }
     private int subByteEndIndex(int start, int end) {
@@ -216,7 +214,7 @@ public class Frequencer implements FrequencerInterface {/*
       int s = 0;
       int e = suffixArray.length-1;
 
-      while(s<e){
+      while(s<=e){
         int m = (s+e)/2;
         if(targetCompare(suffixArray[m],start,end)==0){
           //search
@@ -225,7 +223,7 @@ public class Frequencer implements FrequencerInterface {/*
             return m-1;
           }
           catch(Exception ex){
-            return suffixArray.length-1;
+            return suffixArray.length;
           }
 
         }
@@ -236,6 +234,7 @@ public class Frequencer implements FrequencerInterface {/*
           e=m-1;
         }
       }
+      System.out.println("404");
       return -1;
     }
     public static void main(String[] args) {
@@ -272,6 +271,10 @@ public class Frequencer implements FrequencerInterface {/*
         result = frequencerObject.frequency();
         if(2 == result) { System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nOK!"); } else
         {System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nWRONG"); }
+        frequencerObject.setTarget("o H".getBytes());
+        result = frequencerObject.frequency();
+        if(1 == result) { System.out.println("The Frequency of the starting word o H is 2 and it appeared "+result+" times\nOK!"); } else
+        {System.out.println("The Frequency of the starting word  o H is 1 and it appeared "+result+" times\nWRONG"); }
       }
       catch(Exception e) {
         System.out.println("STOP"+e);

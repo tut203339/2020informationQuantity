@@ -50,10 +50,12 @@ public class TestCase {
       FrequencerInterface testObject;
       testObject = new Frequencer();
       testObject.setSpace("kakukaku sikajika marumaru umauma".getBytes());    //getBytes...https://docs.oracle.com/javase/jp/8/docs/api/java/lang/String.html
-      testObject.setTarget("a".getBytes());      //set the target to count
-      System.out.println("The frequency of a from kakukaku sikajika marumaru umauma is "+testObject.frequency()+" whie you can count it 8.");
       testObject.setTarget("au".getBytes());      //set the target to count
-      System.out.println("The frequency of ma from kakukaku sikajika marumaru umauma is "+testObject.frequency()+" whie you can count it 1.");
+      System.out.println("The frequency of a from kakukaku sikajika marumaru umauma is "+testObject.frequency()+" whie you can count it 8.");
+      if(1 != testObject.frequency()){System.out.println("err");}
+      testObject.setTarget("au".getBytes());      //set the target to count
+      System.out.println("The frequency of au from kakukaku sikajika marumaru umauma is "+testObject.frequency()+" whie you can count it 1.");
+      if(1 != testObject.frequency()){System.out.println("err");}
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred in Frequencer Object");
