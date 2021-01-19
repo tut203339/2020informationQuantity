@@ -157,15 +157,20 @@ public class Frequencer implements FrequencerInterface {/*
       String target_j_k = new String(myTarget);
       suffix_i = suffix_i.substring(i);
       target_j_k = target_j_k.substring(j,k);
-      if(suffix_i.length()<target_j_k.length()){
+      /*if(suffix_i.length()<target_j_k.length()){
         return -1;
       }
       else{
         if(suffix_i.startsWith(target_j_k)){
           return 0;
         }
+      }*/
+      if(suffix_i.startsWith(target_j_k)){
+        return 0;
       }
-      return 1;
+      else{
+        return suffix_i.compareTo(target_j_k)/Math.abs(suffix_i.compareTo(target_j_k));
+      }
     }
     private int subByteStartIndex(int start, int end) {
       for(int i = 0;i<suffixArray.length;i++){
@@ -174,6 +179,25 @@ public class Frequencer implements FrequencerInterface {/*
         }
       }
       return -1;
+      /*int s = 0;
+      int e  suffixArray.length-1;
+
+      while(s<e){
+        int m = (s+e)/2;
+        if(targetCompare(suffixArray[m],start,end)==0){
+
+        }
+        else if(targetCompare(suffixArray[m],start,end)==-1){
+
+        }
+        else if(targetCompare(suffixArray[m],start,end)==1){
+
+        }
+        else{
+          return -1;
+        }
+      }
+      return -1;*/
     }
     private int subByteEndIndex(int start, int end) {
       for(int i = suffixArray.length-1;i>=0;i--){
