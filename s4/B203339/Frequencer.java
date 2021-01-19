@@ -186,8 +186,15 @@ public class Frequencer implements FrequencerInterface {/*
         int m = (s+e)/2;
         if(targetCompare(suffixArray[m],start,end)==0){
           //search
-          while(targetCompare(suffixArray[m--],start,end)==0);
-          return m+2;
+          try{
+            while(targetCompare(suffixArray[--m],start,end)==0);
+            return m+1;
+          }
+          catch(Exception ex){
+            System.out.println(e);
+            return 0;
+          }
+
         }
         else if(targetCompare(suffixArray[m],start,end)==-1){
           s=m+1;
@@ -215,8 +222,14 @@ public class Frequencer implements FrequencerInterface {/*
         int m = (s+e)/2;
         if(targetCompare(suffixArray[m],start,end)==0){
           //search
-          while(targetCompare(suffixArray[m++],start,end)==0);
-          return m-1;
+          try{
+            while(targetCompare(suffixArray[m++],start,end)==0);
+            return m-1;
+          }
+          catch(Exception ex){
+            return suffixArray.length-1;
+          }
+
         }
         else if(targetCompare(suffixArray[m],start,end)==-1){
           s=m+1;
@@ -257,7 +270,7 @@ public class Frequencer implements FrequencerInterface {/*
         System.out.print("Freq = "+ result+" ");
         if(4 == result) { System.out.println("OK"); } else
         {System.out.println("WRONG"); }
-        frequencerObject.setTarget(" Hi".getBytes());
+        frequencerObject.setTarget("o".getBytes());
         result = frequencerObject.frequency();
         if(1 == result) { System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nOK!"); } else
         {System.out.println("The Frequency of the starting word    Ho is 2 and it appeared "+result+" times\nWRONG"); }
