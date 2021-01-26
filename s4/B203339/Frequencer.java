@@ -155,7 +155,7 @@ public class Frequencer implements FrequencerInterface {/*
     private int targetCompare(int i, int j, int k) {
       String suffix_i = new String(mySpace);
       String target_j_k = new String(myTarget);
-      suffix_i = suffix_i.substring(i);
+      suffix_i = suffix_i.substring(suffixArray[i]);
       target_j_k = target_j_k.substring(j,k);
       /*if(suffix_i.length()<target_j_k.length()){
         return -1;
@@ -184,20 +184,20 @@ public class Frequencer implements FrequencerInterface {/*
 
       while(s<=e){
         int m = (s+e)/2;
-        if(targetCompare(suffixArray[m],start,end)==0){
+        if(targetCompare(m,start,end)==0){
           //search
           try{
-            while(targetCompare(suffixArray[--m],start,end)==0);
+            while(targetCompare(--m,start,end)==0);
             return m+1;
           }
           catch(Exception ex){
             return 0;
           }
         }
-        else if(targetCompare(suffixArray[m],start,end)==-1){
+        else if(targetCompare(m,start,end)==-1){
           s=m+1;
         }
-        else if(targetCompare(suffixArray[m],start,end)==1){
+        else if(targetCompare(m,start,end)==1){
           e=m-1;
         }
       }
@@ -215,10 +215,10 @@ public class Frequencer implements FrequencerInterface {/*
 
       while(s<=e){
         int m = (s+e)/2;
-        if(targetCompare(suffixArray[m],start,end)==0){
+        if(targetCompare(m,start,end)==0){
           //search
           try{
-            while(targetCompare(suffixArray[m++],start,end)==0);
+            while(targetCompare(m++,start,end)==0);
             return m-1;
           }
           catch(Exception ex){
@@ -226,10 +226,10 @@ public class Frequencer implements FrequencerInterface {/*
           }
 
         }
-        else if(targetCompare(suffixArray[m],start,end)==-1){
+        else if(targetCompare(m,start,end)==-1){
           s=m+1;
         }
-        else if(targetCompare(suffixArray[m],start,end)==1){
+        else if(targetCompare(m,start,end)==1){
           e=m-1;
         }
       }
