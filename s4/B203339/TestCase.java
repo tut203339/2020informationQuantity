@@ -86,16 +86,16 @@ public class TestCase {
       System.out.println("Original Test");
 
       testObject = new InformationEstimator();
-      testObject.setSpace("thisistest".getBytes());
-      testObject.setTarget("i".getBytes());
+      testObject.setSpace("3231302113".getBytes());
+      testObject.setTarget("3".getBytes());
       testValue = testObject.estimation();
-      System.out.println("The information quantity of i from thisistest is "+testValue+ " as you can see the probability of i is 20%");
+      System.out.println("The information quantity of 3 from thisistest is "+testValue+ " as you can see the probability of i is 40%");
 
-      testObject.setTarget("hi".getBytes());
+      testObject.setTarget("32".getBytes());
       testValue = testObject.estimation();
       System.out.println("The information quantity of hi from thisistest is "+testValue+ " as you can see the probability of hi is 10%");
 
-      testObject.setTarget("th".getBytes());
+      testObject.setTarget("3231".getBytes());
       testValue = testObject.estimation();
       System.out.println("The information quantity of th from thisistest is "+testValue+ " as you can see the probability of th is 10%");
 

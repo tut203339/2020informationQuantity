@@ -201,7 +201,6 @@ public class Frequencer implements FrequencerInterface {/*
           e=m-1;
         }
       }
-      System.out.println("404");
       return -1;
     }
     private int subByteEndIndex(int start, int end) {
@@ -234,7 +233,6 @@ public class Frequencer implements FrequencerInterface {/*
           e=m-1;
         }
       }
-      System.out.println("404");
       return -1;
     }
     public static void main(String[] args) {
