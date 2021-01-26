@@ -89,6 +89,42 @@ public class Frequencer implements FrequencerInterface {/*
         }
       }
     }
+
+    private void __mergeSort(int[] suffix_Array, int left, int right){
+      if(left<right){
+        int center = (left+right)/2;
+        int[] temp = new int[right-left];
+        int p=0,j=0;
+        int i;
+        int k = left;
+        __mergeSort(suffix_Array,left,center);
+        __mergeSort(suffix_Array,center+1,right);
+        for(i=left;i<=center;i++){
+          temp[p++]=suffix_Array[i];
+        }
+        while(i<=right && j<p){
+          int cmpvalue = suffixCompare(temp[j],suffix_Array[i]);
+          System.out.println("compareing "+temp[j]+" and "+suffix_Array[i]+"answer="+cmpvalue);
+          System.out.println("suffix Array["+i+"]="+suffix_Array[i]);
+          suffix_Array[k++]=(suffixCompare(temp[j],suffixArray[i])==-1)?temp[j++]:suffix_Array[i++];
+          for(int s=0;s<suffixArray.length;s++){
+            System.out.print(suffixArray[s]+",");
+          }
+          System.out.println("\n");
+          printSuffixArray();
+        }
+        while(j<p){
+          suffix_Array[k++]=temp[j++];
+        }
+      }
+    }
+
+    private void mergeSort(){
+      if(suffixArray.length>1){
+        __mergeSort(suffixArray,0,suffixArray.length-1);
+      }
+    }
+
     private int suffixCompare(int i, int j) {
       String temp = new String(mySpace);
       String suffix_i = new String();
@@ -118,6 +154,8 @@ public class Frequencer implements FrequencerInterface {/*
       for(int i = 0; i< mySpace.length; i++) {
         suffixArray[i] = i; // Please note that each suffix is expressed by one integer.
       }
+      mergeSort();
+      /*
       for(int i = 0; i< mySpace.length-1; i++) {
         for(int j = mySpace.length-1; j>i; j--) {
           if(suffixCompare(j-1,j)==1){
@@ -127,6 +165,7 @@ public class Frequencer implements FrequencerInterface {/*
           }
         }
       }
+      */
     }
     public void setTarget(byte [] target) {
       myTarget = target; if(myTarget.length>0) targetReady = true;
